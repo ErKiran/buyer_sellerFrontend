@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import AuthHeader from './AuthHeader';
+import AuthHeader from './AuthHeader'
 
-class Register extends Component {
+class Login extends Component {
     render() {
         return (
             <div>
                 <AuthHeader
-                    action="Login"
+                    action="Register"
+                    link="/register"
                 />
                 <div className="padding-top-90 padding-bottom-90 access-page-bg">
                     <div className="container">
@@ -14,37 +15,25 @@ class Register extends Component {
                             <div className="col-xl-4 col-md-6">
                                 <div className="access-form">
                                     <div className="form-header">
-                                        <h5><i data-feather="edit"></i>Register Account</h5>
-                                    </div>
-                                    <div className="account-type">
-                                        <label for="idRegisterCan">
-                                            <input id="idRegisterCan" type="radio" name="register" />
-                                            <span>Candidate</span>
-                                        </label>
-                                        <label for="idRegisterEmp">
-                                            <input id="idRegisterEmp" type="radio" name="register" />
-                                            <span>Employer</span>
-                                        </label>
+                                        <h5><i data-feather="user"></i>Login</h5>
                                     </div>
                                     <form action="#">
-                                        <div className="form-group">
-                                            <input type="text" placeholder="Username" className="form-control" />
-                                        </div>
                                         <div className="form-group">
                                             <input type="email" placeholder="Email Address" className="form-control" />
                                         </div>
                                         <div className="form-group">
                                             <input type="password" placeholder="Password" className="form-control" />
                                         </div>
-                                        <div className="more-option terms">
+                                        <div className="more-option">
                                             <div className="mt-0 terms">
-                                                <input className="custom-radio" type="checkbox" id="radio-4" name="termsandcondition" checked />
+                                                <input className="custom-radio" type="checkbox" id="radio-4" name="termsandcondition" />
                                                 <label for="radio-4">
-                                                    <span className="dot"></span> I accept the <a href="#">terms & conditions</a>
-                                                </label>
+                                                    <span className="dot"></span> Remember Me
+                                              </label>
                                             </div>
+                                            <a href="#">Forget Password?</a>
                                         </div>
-                                        <button className="button primary-bg btn-block">Register</button>
+                                        <button className="button primary-bg btn-block">Login</button>
                                     </form>
                                     <div className="shortcut-login">
                                         <span>Or connect with</span>
@@ -52,7 +41,7 @@ class Register extends Component {
                                             <a href="#" className="facebook"><i className="fab fa-facebook-f"></i>Facebook</a>
                                             <a href="#" className="google"><i className="fab fa-google"></i>Google</a>
                                         </div>
-                                        <p>Already have an account? <a href="login.html">Login</a></p>
+                                        <p>Don't have an account? <a href="register.html">Register</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -64,4 +53,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default Login;

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const AuthHeader = () => {
+const AuthHeader = (props) => {
     return (
         <div>
             <header className="header-2 access-page-nav">
@@ -12,7 +13,7 @@ const AuthHeader = () => {
                                     <a href="index.html"><img src="images/logo-2.png" alt="" /></a>
                                 </div>
                                 <div className="top-nav">
-                                    <a href="login.html" className="account-page-link">Login</a>
+                                    <Link to={props.link} className="account-page-link">{props.action}</Link>
                                 </div>
                             </div>
                         </div>
