@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AuthHeader from './AuthHeader'
+import AuthFooter from './AuthFooter';
 
 class Login extends Component {
     render() {
@@ -15,7 +16,7 @@ class Login extends Component {
                             <div className="col-xl-4 col-md-6">
                                 <div className="access-form">
                                     <div className="form-header">
-                                        <h5><i data-feather="user"></i>Login</h5>
+                                        <h5><i className="user"></i>Login</h5>
                                     </div>
                                     <form action="#">
                                         <div className="form-group">
@@ -35,14 +36,11 @@ class Login extends Component {
                                         </div>
                                         <button className="button primary-bg btn-block">Login</button>
                                     </form>
-                                    <div className="shortcut-login">
-                                        <span>Or connect with</span>
-                                        <div className="buttons">
-                                            <a href="#" className="facebook"><i className="fab fa-facebook-f"></i>Facebook</a>
-                                            <a href="#" className="google"><i className="fab fa-google"></i>Google</a>
-                                        </div>
-                                        <p>Don't have an account? <a href="register.html">Register</a></p>
-                                    </div>
+                                    <AuthFooter
+                                        info="Don't have an account? "
+                                        title="Register"
+                                        link="/register"
+                                    />
                                 </div>
                             </div>
                         </div>
