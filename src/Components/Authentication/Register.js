@@ -14,6 +14,8 @@ class Register extends Component {
             password: '',
             password2: '',
             username: '',
+            usertype: '',
+            termsChecked: false,
             errors: {}
         };
     }
@@ -29,10 +31,29 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
             name: this.state.username,
-            password2: this.state.password2
+            password2: this.state.password2,
+            role: this.state.usertype,
+            termsChecked: this.state.termsChecked
         };
-        this.props.registerUser(userData, this.props.history);
-        console.log(userData)
+        if (userData.password !== userData.password2) {
+            console.log("Password Mismatched")
+        } else {
+            this.props.registerUser(userData, this.props.history);
+            console.log(userData)
+        }
+    }
+
+    clickme = () => {
+        this.setState({ usertype: 'Candidate' })
+    }
+
+    clickmee = () => {
+        this.setState({ usertype: 'Employeer' })
+    }
+
+    termClicked = () => {
+        const check = this.state.termsChecked;
+        (check === null) ? this.setState({ termsChecked: true }) : this.setState({ termsChecked: false });
     }
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -55,11 +76,11 @@ class Register extends Component {
                                     </div>
                                     <div className="account-type">
                                         <label for="idRegisterCan">
-                                            <input id="idRegisterCan" type="radio" name="register" />
+                                            <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
                                             <span>Candidate</span>
                                         </label>
                                         <label for="idRegisterEmp">
-                                            <input id="idRegisterEmp" type="radio" name="register" />
+                                            <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
                                             <span>Employer</span>
                                         </label>
                                     </div>
@@ -99,7 +120,12 @@ class Register extends Component {
                                         />
                                         <div className="more-option terms">
                                             <div className="mt-0 terms">
-                                                <input className="custom-radio" type="checkbox" id="radio-4" name="termsandcondition" checked />
+                                                <input className="custom-radio"
+                                                    type="checkbox"
+                                                    id="radio-4"
+                                                    name="termsandcondition"
+                                                    onClick={this.termClicked}
+                                                />
                                                 <label for="radio-4">
                                                     <span className="dot"></span> I accept the <a href="#">terms & conditions</a>
                                                 </label>

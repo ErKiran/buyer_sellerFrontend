@@ -9886,6 +9886,11 @@ header .absolute-nav {
 /*---------------------------------------------
 	28.0 Account Style
 ---------------------------------------------*/
+.access-page-bg-forget {
+  background: url("../images/bg/banner-3-bg.jpg") no-repeat center;
+  background-size: cover;
+}
+
 .access-page-bg {
   background: url("../images/bg/access-bg.jpg") no-repeat center;
   background-size: cover;

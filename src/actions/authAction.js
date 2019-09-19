@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 
 import { BASE_URL } from './api';
 
-import { SET_CURRENT_USER, GET_ERRORS } from './types';
+import { SET_CURRENT_USER, GET_ERRORS, PASSWORD_RESET_REQUEST } from './types';
 
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
@@ -56,4 +56,29 @@ export const logoutUser = () => dispatch => {
     setAuthToken(false);
     // Set current user to {} which will set isAuthenticated to false
     dispatch(setCurrentUser({}));
+};
+
+
+/**
+ * Forget Password
+ * 
+ */
+
+export const forgetPassword = (userData, history) => async dispatch => {
+    try {
+        const res = await axios.post(`${BASE_URL}/forget-password`, userData);
+        dispatch({
+            type: PASSWORD_RESET_REQUEST,
+            payload: res.data.passwordResetToken
+        })
+        if (res.data) {
+            history.push('/login')
+        }
+    }
+    catch (err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err
+        })
+    }
 };
