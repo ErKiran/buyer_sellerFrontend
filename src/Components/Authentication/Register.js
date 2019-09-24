@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { registerUser } from '../../actions/authAction';
 import AuthHeader from './AuthHeader';
 import AuthFooter from './AuthFooter';
 import TextFieldGroup from '../common/TextFieldGroup';
+
 
 class Register extends Component {
     constructor() {
@@ -84,6 +85,7 @@ class Register extends Component {
                                             <span>Employer</span>
                                         </label>
                                     </div>
+                                    {errors.userRole}
                                     <form onSubmit={this.onSubmit}>
                                         <TextFieldGroup
                                             placeholder="Username*"
@@ -127,7 +129,7 @@ class Register extends Component {
                                                     onClick={this.termClicked}
                                                 />
                                                 <label for="radio-4">
-                                                    <span className="dot"></span> I accept the <a href="#">terms & conditions</a>
+                                                    <span className="dot"></span> I accept the <Link to="terms_and_condition">terms & conditions</Link>
                                                 </label>
                                             </div>
                                         </div>

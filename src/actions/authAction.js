@@ -9,7 +9,7 @@ import { SET_CURRENT_USER, GET_ERRORS, PASSWORD_RESET_REQUEST } from './types';
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
     try {
-        const res = await axios.post(`${BASE_URL}/register`, userData);
+        const res = await axios.post(`${BASE_URL}/auth/register`, userData);
         if (res.data) {
             history.push('/login')
         }
@@ -24,7 +24,7 @@ export const registerUser = (userData, history) => async dispatch => {
 
 export const loginUser = userData => async dispatch => {
     try {
-        const res = await axios.post(`${BASE_URL}/login`, userData);
+        const res = await axios.post(`${BASE_URL}/auth/login`, userData);
         const { token } = res.data;
         console.log(token)
         localStorage.setItem('jwtToken', token);
@@ -66,13 +66,13 @@ export const logoutUser = () => dispatch => {
 
 export const forgetPassword = (userData, history) => async dispatch => {
     try {
-        const res = await axios.post(`${BASE_URL}/forget-password`, userData);
+        const res = await axios.post(`${BASE_URL}/auth/forget-password`, userData);
         dispatch({
             type: PASSWORD_RESET_REQUEST,
             payload: res.data.passwordResetToken
         })
         if (res.data) {
-            history.push('/login')
+            history.push('/info')
         }
     }
     catch (err) {

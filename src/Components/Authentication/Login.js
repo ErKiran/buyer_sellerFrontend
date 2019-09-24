@@ -24,7 +24,7 @@ class Login extends Component {
             this.props.history.push('/What_we_do');
         }
     }
-    onSubmit = (e) => {
+    onSubmit = async(e) => {
         e.preventDefault();
 
         const userData = {
@@ -32,7 +32,8 @@ class Login extends Component {
             password: this.state.password
         };
 
-        this.props.loginUser(userData);
+        const data = await this.props.loginUser(userData);
+        console.log(data);
         if (this.props.auth.isAuthenticated) {
             this.props.history.push('/What_we_do')
         }

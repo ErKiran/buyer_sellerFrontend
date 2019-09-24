@@ -16,9 +16,8 @@ class ForgetPassword extends Component {
             email: this.state.email
         };
         this.props.forgetPassword(userData);
-        console.log(this.props)
         if (this.props.auth.isResetRequest) {
-            this.props.history.push('/login');
+            this.props.history.push('/forget_password_info');
         }
     }
     onChange = (e) => {

@@ -172,6 +172,10 @@ a:focus {
   background: #f7f9fc;
 }
 
+.alice-bg-terms {
+  background: #1da1f2;
+}
+
 .section-padding {
   padding: 120px 0;
 }
