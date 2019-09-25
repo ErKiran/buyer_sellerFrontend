@@ -35,8 +35,8 @@ class App extends Component {
             <Route exact path="/forget_password" component={ForgetPassword} />
             <Route exact path="/forget_password_info" component={Info} />
             <Route exact path="/terms_and_condition" component={TermsAndCondition} />
-            <Route exact path="/Employeerprofile" component={ConsultantProfile} />
-            <Route exact path="/Candidateprofile" component={SeekerProfile} />
+            <Route exact path="/Consultantprofile" component={ConsultantProfile} />
+            <Route exact path="/Seekerprofile" component={SeekerProfile} />
           </Switch>
         </BrowserRouter>
       </div>

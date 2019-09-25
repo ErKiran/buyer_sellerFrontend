@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { changePasswordAction } from '../../actions/profileAction';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class ChangePassword extends Component {
@@ -7,8 +9,15 @@ class ChangePassword extends Component {
         this.state = {
             currentPass: '',
             newPass: '',
-            confirmPass: ''
+            confirmPass: '',
+            errors: {}
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
     }
     onSubmit = async (e) => {
         e.preventDefault();
@@ -17,7 +26,7 @@ class ChangePassword extends Component {
             newPass: this.state.newPass,
             confirmPass: this.state.confirmPass
         };
-        console.log(userData)
+        this.props.changePasswordAction(userData)
     }
 
     onChange = (e) => {
@@ -25,6 +34,7 @@ class ChangePassword extends Component {
     }
 
     render() {
+        const { errors } = this.state;
         return (
             <div className="dashboard-section basic-info-input">
                 <form onSubmit={this.onSubmit} className="dashboard-form">
@@ -37,6 +47,7 @@ class ChangePassword extends Component {
                                 onChange={this.onChange}
                                 value={this.state.currentPass}
                                 placeholder="Current Password"
+                                error={errors.currentPass}
                             />
                         </div>
                     </div>
@@ -48,6 +59,7 @@ class ChangePassword extends Component {
                                 onChange={this.onChange}
                                 value={this.state.newPass}
                                 placeholder="New Password"
+                                error={errors.newPass}
                             />
                         </div>
                     </div>
@@ -59,6 +71,7 @@ class ChangePassword extends Component {
                                 onChange={this.onChange}
                                 value={this.state.confirmPass}
                                 placeholder="Confirm Password"
+                                error={errors.confirmPass}
                             />
                         </div>
                     </div>
@@ -74,4 +87,8 @@ class ChangePassword extends Component {
     }
 }
 
-export default ChangePassword;
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(mapStateToProps, { changePasswordAction })(ChangePassword);

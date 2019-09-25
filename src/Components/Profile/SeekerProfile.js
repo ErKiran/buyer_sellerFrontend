@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addSeekerProfile } from '../../actions/profileAction';
+
 import BreadCrumb from '../common/BreadCrumb';
-import ChangePassword from './ChangePassword';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class SeekerProfile extends Component {
@@ -24,6 +26,9 @@ class SeekerProfile extends Component {
             address: this.state.address,
             aboutMe: this.state.aboutMe
         };
+
+        this.props.addSeekerProfile(userData)
+
         console.log(userData)
     }
 
@@ -114,7 +119,12 @@ class SeekerProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ChangePassword />
+                                            <div className="form-group row">
+                                                <label className="col-sm-3 col-form-label"></label>
+                                                <div className="col-sm-9">
+                                                    <button className="button">Save Change</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -127,4 +137,9 @@ class SeekerProfile extends Component {
     }
 }
 
-export default SeekerProfile;
+const mapStateToProps = state => ({
+    errors: state.errors
+});
+
+export default connect(mapStateToProps, { addSeekerProfile })(SeekerProfile);
+
