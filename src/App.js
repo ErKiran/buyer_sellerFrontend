@@ -10,6 +10,8 @@ import { setCurrentUser, logoutUser } from './actions/authAction';
 import ForgetPassword from './Components/Authentication/ForgetPassword';
 import Info from './Components/common/Info';
 import TermsAndCondition from './Components/TermsPrivacy/TermsAndCondition';
+import ConsultantProfile from './Components/Profile/ConsultantProfile';
+import SeekerProfile from './Components/Profile/SeekerProfile';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -33,6 +35,8 @@ class App extends Component {
             <Route exact path="/forget_password" component={ForgetPassword} />
             <Route exact path="/forget_password_info" component={Info} />
             <Route exact path="/terms_and_condition" component={TermsAndCondition} />
+            <Route exact path="/Employeerprofile" component={ConsultantProfile} />
+            <Route exact path="/Candidateprofile" component={SeekerProfile} />
           </Switch>
         </BrowserRouter>
       </div>

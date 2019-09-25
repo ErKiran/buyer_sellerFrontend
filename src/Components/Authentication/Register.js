@@ -45,11 +45,11 @@ class Register extends Component {
     }
 
     clickme = () => {
-        this.setState({ usertype: 'Candidate' })
+        this.setState({ usertype: 'Seeker' })
     }
 
     clickmee = () => {
-        this.setState({ usertype: 'Employeer' })
+        this.setState({ usertype: 'Consultant' })
     }
 
     termClicked = () => {
@@ -78,11 +78,11 @@ class Register extends Component {
                                     <div className="account-type">
                                         <label for="idRegisterCan">
                                             <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
-                                            <span>Candidate</span>
+                                            <span>Seeker</span>
                                         </label>
                                         <label for="idRegisterEmp">
                                             <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
-                                            <span>Employer</span>
+                                            <span>Consultant</span>
                                         </label>
                                     </div>
                                     {errors.userRole}

@@ -16,26 +16,21 @@ class Login extends Component {
     }
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push('/What_we_do');
+            this.props.history.push(`${this.props.auth.user.role}profile`);
         }
     }
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-            this.props.history.push('/What_we_do');
-        }
-    }
-    onSubmit = async(e) => {
-        e.preventDefault();
 
+   
+    onSubmit = (e) => {
+        e.preventDefault();
         const userData = {
             email: this.state.email,
             password: this.state.password
         };
+        this.props.loginUser(userData);
 
-        const data = await this.props.loginUser(userData);
-        console.log(data);
         if (this.props.auth.isAuthenticated) {
-            this.props.history.push('/What_we_do')
+            this.props.history.push(`${this.props.auth.user.role}profile`);
         }
     }
 
@@ -103,7 +98,8 @@ class Login extends Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+    role: state.role
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

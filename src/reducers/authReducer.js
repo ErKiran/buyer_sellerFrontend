@@ -1,6 +1,9 @@
 import isEmpty from '../validations/isEmpty';
 
-import { SET_CURRENT_USER, PASSWORD_RESET_REQUEST } from '../actions/types';
+import {
+    SET_CURRENT_USER,
+    PASSWORD_RESET_REQUEST
+} from '../actions/types';
 
 
 const initialState = {
@@ -21,7 +24,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isResetRequest: action.payload
-            }
+            };
         default:
             return state;
     }
