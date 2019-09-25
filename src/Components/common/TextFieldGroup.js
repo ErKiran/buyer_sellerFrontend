@@ -12,24 +12,20 @@ const TextFieldGroup = ({
     disabled
 }) => {
     return (
-        <div className="col-md-12">
-            <div className="row">
-                <div className="form-group">
-                    <input
-                        type={type}
-                        className={classnames('form-control', {
-                            'is-invalid': error
-                        })}
-                        placeholder={placeholder}
-                        name={name}
-                        value={value}
-                        onChange={onChange}
-                        disabled={disabled}
-                    />
-                    {info && <small className="form-text text-muted">{info}</small>}
-                    {error && <div className="invalid-feedback">{error}</div>}
-                </div>
-            </div>
+        <div className="form-group">
+            <input
+                type={type}
+                className={classnames('form-control', {
+                    'is-invalid': error
+                })}
+                placeholder={placeholder}
+                name={name}
+                value={value}
+                onChange={onChange}
+                disabled={disabled}
+            />
+            {info && <small className="form-text text-muted">{info}</small>}
+            {error && <div className="invalid-feedback">{error}</div>}
         </div>
     );
 };
