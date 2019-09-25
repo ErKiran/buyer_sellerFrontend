@@ -21,7 +21,6 @@ export const changePasswordAction = (userData, history) => async dispatch => {
 export const addSeekerProfile = (userData, history) => async dispatch => {
     try {
         const res = await axios.post(`${BASE_URL}/profile/add_seeker`, userData);
-        console.log(res.data)
         if (res.data) {
             history.push('/dashboard')
         }

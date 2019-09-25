@@ -12,6 +12,7 @@ import Info from './Components/common/Info';
 import TermsAndCondition from './Components/TermsPrivacy/TermsAndCondition';
 import ConsultantProfile from './Components/Profile/ConsultantProfile';
 import SeekerProfile from './Components/Profile/SeekerProfile';
+import Landing from './Components/Landing/Landing';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -31,6 +32,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/register" component={Register} />
+            <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/forget_password" component={ForgetPassword} />
             <Route exact path="/forget_password_info" component={Info} />

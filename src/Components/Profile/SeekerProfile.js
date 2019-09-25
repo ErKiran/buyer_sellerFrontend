@@ -4,6 +4,7 @@ import { addSeekerProfile } from '../../actions/profileAction';
 
 import BreadCrumb from '../common/BreadCrumb';
 import TextFieldGroup from '../common/TextFieldGroup';
+import DashboardMenu from './DashboardMenu';
 
 class SeekerProfile extends Component {
     constructor() {
@@ -26,10 +27,7 @@ class SeekerProfile extends Component {
             address: this.state.address,
             aboutMe: this.state.aboutMe
         };
-
         this.props.addSeekerProfile(userData)
-
-        console.log(userData)
     }
 
     onChange = (e) => {
@@ -75,7 +73,7 @@ class SeekerProfile extends Component {
                                                     <label className="col-sm-3 col-form-label">Phone</label>
                                                     <div className="col-sm-9">
                                                         <TextFieldGroup
-                                                            placeholder="PhoneNumber*"
+                                                            placeholder="Phone Number*"
                                                             name="phone"
                                                             type="text"
                                                             value={this.state.phone}
@@ -127,6 +125,7 @@ class SeekerProfile extends Component {
                                             </div>
                                         </form>
                                     </div>
+                                    <DashboardMenu />
                                 </div>
                             </div>
                         </div>
