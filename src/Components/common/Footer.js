@@ -67,7 +67,6 @@ const Footer = () => {
                                 <div className="row">
                                     <div className="col-xl-4 col-lg-5 order-lg-2">
                                         <div className="footer-app-download">
-
                                         </div>
                                     </div>
                                     <div className="col-xl-4 col-lg-4 order-lg-1">

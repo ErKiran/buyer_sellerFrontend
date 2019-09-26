@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authAction';
 import { Link } from 'react-router-dom';
+
+import { loginUser } from '../../actions/authAction';
+
 import TextFieldGroup from '../common/TextFieldGroup';
 import AuthHeader from './AuthHeader'
 import AuthFooter from './AuthFooter';
@@ -32,6 +34,7 @@ class Login extends Component {
             this.props.history.push(`${this.props.auth.user.role}profile`);
         }
     }
+
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });

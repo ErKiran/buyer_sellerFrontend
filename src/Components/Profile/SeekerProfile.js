@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSeekerProfile } from '../../actions/profileAction';
+import { addSeekerProfile, editSeekerProfile, getProfileData } from '../../actions/profileAction';
 
 import BreadCrumb from '../common/BreadCrumb';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -18,6 +18,16 @@ class SeekerProfile extends Component {
             industryInterest: ''
         };
     }
+    componentDidMount() {
+        this.props.getProfileData()
+    }
+
+    checkIfProfileExist = (userData) => {
+        const { profileData } = this.props.profileData;
+        Object.values(profileData).length === 1 ? this.props.editSeekerProfile(userData) : this.props.addSeekerProfile(userData)
+    }
+
+
     onSubmit = async (e) => {
         e.preventDefault();
         const userData = {
@@ -27,11 +37,23 @@ class SeekerProfile extends Component {
             address: this.state.address,
             aboutMe: this.state.aboutMe
         };
-        this.props.addSeekerProfile(userData)
+        this.checkIfProfileExist(userData)
     }
 
     onChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { profileData } = nextProps.profileData;
+        const datas = Object.values(profileData);
+        this.setState({
+            fullname: datas[0].fullname,
+            phone: datas[0].phone,
+            industryInterest: datas[0].industryInterest,
+            address: datas[0].address,
+            aboutMe: datas[0].aboutMe
+        })
     }
 
     render() {
@@ -125,7 +147,7 @@ class SeekerProfile extends Component {
                                             </div>
                                         </form>
                                     </div>
-                                    <DashboardMenu />
+                                    <DashboardMenu edit="active" />
                                 </div>
                             </div>
                         </div>
@@ -137,8 +159,16 @@ class SeekerProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.errors
+    errors: state.errors,
+    profileData: state.profile
 });
 
-export default connect(mapStateToProps, { addSeekerProfile })(SeekerProfile);
+export default connect(
+    mapStateToProps,
+    {
+        addSeekerProfile,
+        getProfileData,
+        editSeekerProfile
+    }
+)(SeekerProfile);
 

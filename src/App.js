@@ -13,6 +13,7 @@ import TermsAndCondition from './Components/TermsPrivacy/TermsAndCondition';
 import ConsultantProfile from './Components/Profile/ConsultantProfile';
 import SeekerProfile from './Components/Profile/SeekerProfile';
 import Landing from './Components/Landing/Landing';
+import ChangePassword from './Components/Profile/ChangePassword';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/change_password" component={ChangePassword} />
             <Route exact path="/forget_password" component={ForgetPassword} />
             <Route exact path="/forget_password_info" component={Info} />
             <Route exact path="/terms_and_condition" component={TermsAndCondition} />
