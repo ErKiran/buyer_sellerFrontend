@@ -13,9 +13,17 @@ class Login extends Component {
         super();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {}
         };
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({ errors: nextProps.errors });
+        }
+    }
+
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
             this.props.history.push(`${this.props.auth.user.role}profile`);
@@ -40,6 +48,7 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
     render() {
+        const { errors } = this.state;
         return (
             <div>
                 <AuthHeader
@@ -62,6 +71,7 @@ class Login extends Component {
                                             name="email"
                                             value={this.state.email}
                                             onChange={this.onChange}
+                                            error={errors.email}
                                         />
                                         <TextFieldGroup
                                             className="form-control"
@@ -70,6 +80,7 @@ class Login extends Component {
                                             name="password"
                                             value={this.state.password}
                                             onChange={this.onChange}
+                                            error={Object.values(errors)}
                                         />
                                         <div className="more-option">
                                             <div className="mt-0 terms">

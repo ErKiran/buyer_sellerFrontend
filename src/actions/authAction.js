@@ -7,7 +7,8 @@ import { BASE_URL } from './api';
 import {
     SET_CURRENT_USER,
     GET_ERRORS,
-    PASSWORD_RESET_REQUEST
+    PASSWORD_RESET_REQUEST,
+    GET_CURRENT_USER
 } from './types';
 
 // Register User
@@ -77,6 +78,22 @@ export const forgetPassword = (userData, history) => async dispatch => {
         if (res.data) {
             history.push('/info')
         }
+    }
+    catch (err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err
+        })
+    }
+};
+
+export const getCurrentUser = () => async dispatch => {
+    try {
+        const res = await axios.get(`${BASE_URL}/auth/current`);
+        dispatch({
+            type: GET_CURRENT_USER,
+            payload: res.data
+        })
     }
     catch (err) {
         dispatch({

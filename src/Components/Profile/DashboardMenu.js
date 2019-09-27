@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProfileData } from '../../actions/profileAction';
+import { getConsultantProfileData, getSeekerProfileData } from '../../actions/profileAction';
 
 class DashboardMenu extends Component {
+    constructor() {
+        super();
+        this.state = {
+            fullname: '',
+            mention: '',
+            errors: {}
+        };
+    }
     componentDidMount() {
-        this.props.getProfileData()
+        this.props.getSeekerProfileData();
+        this.props.getConsultantProfileData()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profileData) {
+            this.setState({ fullname: nextProps.profileData.fullname });
+        }
     }
 
     render() {
-        const { profileData } = this.props.profileData;
-        const fullname = Object.values(profileData)[0]
-        console.log(Object.values(fullname).fullname)
+        const { profileData } = this.state;
         return (
             <div>
                 <div className="dashboard-sidebar">
@@ -20,7 +33,7 @@ class DashboardMenu extends Component {
                             <img src="dashboard/images/user-1.jpg" className="img-fluid" alt="" />
                         </div>
                         <div className="user-body">
-                            <h5></h5>
+                            <h5>KIran Adhikari</h5>
                             <span>@username</span>
                         </div>
                     </div>
@@ -51,7 +64,7 @@ class DashboardMenu extends Component {
                             <li><i className="fas fa-power-off"></i><a href="#">Logout</a></li>
                             <li><i className="fas fa-trash-alt"></i><a href="#" data-toggle="modal" data-target="#modal-delete">Delete Profile</a></li>
                         </ul>
-                        <div className="modal fade modal-delete" id="modal-delete" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div className="modal fade modal-delete" id="modal-delete" tabIndex="-1" role="dialog" aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content">
                                     <div className="modal-body">
@@ -66,7 +79,7 @@ class DashboardMenu extends Component {
                                                 <button className="">Cancel</button>
                                             </div>
                                             <div className="form-group form-check">
-                                                <input type="checkbox" className="form-check-input" checked="" />
+                                                <input type="checkbox" className="form-check-input" defaultChecked="" />
                                                 <label className="form-check-label">You accepts our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
                                             </div>
                                         </form>
@@ -89,6 +102,7 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     {
-        getProfileData
+        getConsultantProfileData,
+        getSeekerProfileData
     }
 )(DashboardMenu);

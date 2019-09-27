@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addSeekerProfile, editSeekerProfile, getProfileData } from '../../actions/profileAction';
+import { addSeekerProfile, editSeekerProfile, getSeekerProfileData } from '../../actions/profileAction';
 
 import BreadCrumb from '../common/BreadCrumb';
 import TextFieldGroup from '../common/TextFieldGroup';
@@ -47,13 +47,15 @@ class SeekerProfile extends Component {
     componentWillReceiveProps(nextProps) {
         const { profileData } = nextProps.profileData;
         const datas = Object.values(profileData);
-        this.setState({
-            fullname: datas[0].fullname,
-            phone: datas[0].phone,
-            industryInterest: datas[0].industryInterest,
-            address: datas[0].address,
-            aboutMe: datas[0].aboutMe
-        })
+        if (datas[0]) {
+            this.setState({
+                fullname: datas[0].fullname,
+                phone: datas[0].phone,
+                industryInterest: datas[0].industryInterest,
+                address: datas[0].address,
+                aboutMe: datas[0].aboutMe
+            })
+        }
     }
 
     render() {
@@ -146,9 +148,11 @@ class SeekerProfile extends Component {
                                                 </div>
                                             </div>
                                         </form>
+
                                     </div>
                                     <DashboardMenu edit="active" />
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -167,7 +171,7 @@ export default connect(
     mapStateToProps,
     {
         addSeekerProfile,
-        getProfileData,
+        getSeekerProfileData,
         editSeekerProfile
     }
 )(SeekerProfile);

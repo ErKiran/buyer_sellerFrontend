@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changePasswordAction } from '../../actions/profileAction';
+import { getCurrentUser } from '../../actions/authAction';
 import TextFieldGroup from '../common/TextFieldGroup';
 import BreadCrumb from '../common/BreadCrumb';
 import DashboardMenu from './DashboardMenu';
@@ -12,12 +13,21 @@ class ChangePassword extends Component {
             currentPass: '',
             newPass: '',
             confirmPass: '',
+            email: '',
             errors: {}
         };
     }
+    componentDidMount() {
+        this.props.getCurrentUser()
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            this.setState({ errors: nextProps.errors });
+            this.setState(
+                {
+                    errors: nextProps.errors,
+                    email: nextProps.auth.current.email
+                });
         }
     }
     onSubmit = async (e) => {
@@ -25,7 +35,8 @@ class ChangePassword extends Component {
         const userData = {
             currentPass: this.state.currentPass,
             newPass: this.state.newPass,
-            confirmPass: this.state.confirmPass
+            confirmPass: this.state.confirmPass,
+            email: this.state.email
         };
         this.props.changePasswordAction(userData)
     }
@@ -107,7 +118,12 @@ class ChangePassword extends Component {
 }
 
 const mapStateToProps = state => ({
-    errors: state.errors
+    errors: state.errors,
+    auth: state.auth
 });
 
-export default connect(mapStateToProps, { changePasswordAction })(ChangePassword);
+export default connect(mapStateToProps,
+    {
+        changePasswordAction,
+        getCurrentUser
+    })(ChangePassword);

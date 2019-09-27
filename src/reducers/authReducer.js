@@ -2,14 +2,16 @@ import isEmpty from '../validations/isEmpty';
 
 import {
     SET_CURRENT_USER,
-    PASSWORD_RESET_REQUEST
+    PASSWORD_RESET_REQUEST,
+    GET_CURRENT_USER
 } from '../actions/types';
 
 
 const initialState = {
     isAuthenticated: false,
     user: {},
-    isResetRequest: false
+    isResetRequest: false,
+    current: {}
 };
 
 export default function (state = initialState, action) {
@@ -25,6 +27,11 @@ export default function (state = initialState, action) {
                 ...state,
                 isResetRequest: action.payload
             };
+        case GET_CURRENT_USER:
+            return {
+                ...state,
+                current: action.payload
+            }
         default:
             return state;
     }

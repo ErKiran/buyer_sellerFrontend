@@ -4,7 +4,7 @@ class SearchListing extends Component {
     render() {
         return (
             <div>
-                <div classname="searchAndFilter-wrapper " style={{ paddingTop: '300px' }}>
+                <div className="searchAndFilter-wrapper " style={{ paddingTop: '300px' }}>
                     <div className="container">
                         <div className="row">
                             <div className="col">
@@ -13,7 +13,7 @@ class SearchListing extends Component {
                                         <form action="#" className="search-form">
                                             <input type="text" placeholder="Enter Keywords" />
                                             <select className="selectpicker" id="search-location">
-                                                <option value="" selected>Location</option>
+                                                <option value="" >Location</option>
                                                 <option value="california">California</option>
                                                 <option value="las-vegas">Las Vegas</option>
                                                 <option value="new-work">New Work</option>
@@ -24,7 +24,7 @@ class SearchListing extends Component {
                                                 <option value="neveda">Neveda</option>
                                             </select>
                                             <select className="selectpicker" id="search-category">
-                                                <option value="" selected>Category</option>
+                                                <option value="" >Category</option>
                                                 <option value="real-state">Real State</option>
                                                 <option value="vehicales">Vehicales</option>
                                                 <option value="electronics">Electronics</option>
