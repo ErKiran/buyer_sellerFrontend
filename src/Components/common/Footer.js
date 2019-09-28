@@ -8,7 +8,7 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-lg-5 col-sm-6">
                             <div className="footer-widget widget-about">
-                                <img src="images/logo2.png" />
+                                <img src="images/logo2.png" alt="Logo"/>
                                 <div className="widget-inner" style={{ paddingTop: '5px' }}>
                                     <p className="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
                                     <span className="about-contact"><i data-feather="phone-forwarded"></i>+8 246-345-0698</span>

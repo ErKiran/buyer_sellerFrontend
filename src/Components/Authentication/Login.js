@@ -30,14 +30,13 @@ class Login extends Component {
         }
     }
 
-    onSubmit = (e) => {
+    onSubmit = async (e) => {
         e.preventDefault();
         const userData = {
             email: this.state.email,
             password: this.state.password
         };
-        this.props.loginUser(userData);
-
+        await this.props.loginUser(userData);
         if (this.props.auth.isAuthenticated) {
             this.props.history.push(`${this.props.auth.user.role}profile`);
         }

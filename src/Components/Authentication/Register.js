@@ -51,7 +51,7 @@ class Register extends Component {
                 }
             })
         } else {
-            this.props.registerUser(userData, this.props.history);
+            await this.props.registerUser(userData, this.props.history);
             if (this.props.auth.register) {
                 if (this.props.auth.register.msg) {
                     this.props.history.push('/login')
