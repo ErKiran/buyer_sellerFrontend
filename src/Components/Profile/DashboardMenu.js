@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getConsultantProfileData, getSeekerProfileData } from '../../actions/profileAction';
+import { getCurrentUser } from '../../actions/authAction';
 
 class DashboardMenu extends Component {
     constructor() {
@@ -14,17 +15,21 @@ class DashboardMenu extends Component {
     }
     componentDidMount() {
         this.props.getSeekerProfileData();
-        this.props.getConsultantProfileData()
+        this.props.getConsultantProfileData();
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.profileData) {
-            this.setState({ fullname: nextProps.profileData.fullname });
+    componentDidUpdate() {
+        if (this.props.profileData.profileData[0]) {
+            if (this.state.fullname === '') {
+                this.setState({
+                    fullname: this.props.profileData.profileData[0].fullname,
+                    mention: this.props.auth.user.name
+                })
+            }
         }
     }
 
     render() {
-        const { profileData } = this.state;
         return (
             <div>
                 <div className="dashboard-sidebar">
@@ -33,8 +38,8 @@ class DashboardMenu extends Component {
                             <img src="dashboard/images/user-1.jpg" className="img-fluid" alt="" />
                         </div>
                         <div className="user-body">
-                            <h5>KIran Adhikari</h5>
-                            <span>@username</span>
+                            <h5>{this.state.fullname}</h5>
+                            <span>@{this.state.mention}</span>
                         </div>
                     </div>
                     <div className="profile-progress">
@@ -96,13 +101,15 @@ class DashboardMenu extends Component {
 
 const mapStateToProps = state => ({
     errors: state.errors,
-    profileData: state.profile
+    profileData: state.profile,
+    auth: state.auth
 });
 
 export default connect(
     mapStateToProps,
     {
         getConsultantProfileData,
-        getSeekerProfileData
+        getSeekerProfileData,
+        getCurrentUser
     }
 )(DashboardMenu);

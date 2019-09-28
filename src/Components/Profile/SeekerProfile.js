@@ -19,7 +19,7 @@ class SeekerProfile extends Component {
         };
     }
     componentDidMount() {
-        this.props.getProfileData()
+        this.props.getSeekerProfileData()
     }
 
     checkIfProfileExist = (userData) => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -13,11 +14,9 @@ const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto main-nav">
-                            <li className="menu-item post-job"><a title="Title" href="#"><i className="fas fa-home"></i>Home</a></li>
-                            <li className="menu-item post-job"><a title="Title" href="#"><i className="fas fa-plus"></i>How it works</a></li>
-                            <li className="menu-item post-job"><a title="Title" href="#"><i className="fas fa-suitcase"></i>Be Consultant</a></li>
-                            <li className="menu-item post-job"><a title="Title" data-toggle="modal" data-target="#exampleModalLong"><i className="fas fa-sign-in-alt"></i>Login</a></li>
-                            <li className="menu-item post-job"><a title="Title" data-toggle="modal" data-target="#exampleModalLong2"><i className="fas fa-user-plus"></i>Registration</a></li>
+                            <li className="menu-item post-job"><Link title="Title" to="/"><i className="fas fa-home"></i>Home</Link></li>
+                            <li className="menu-item post-job"><Link title="Title" to="/login"><i className="fas fa-sign-in-alt"></i>Login</Link></li>
+                            <li className="menu-item post-job"><Link title="Title" to="/register"><i className="fas fa-user-plus"></i>Registration</Link></li>
                         </ul>
                     </div>
                 </nav>

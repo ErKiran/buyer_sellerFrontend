@@ -1,8 +1,67 @@
 import React, { Component } from 'react';
-import BreadCrumb from '../common/BreadCrumb'
-import ChangePassword from './ChangePassword';
+import BreadCrumb from '../common/BreadCrumb';
+import DashboardMenu from './DashboardMenu';
+import { connect } from 'react-redux';
+import { getConsultantProfileData, addConsultantProfile, editConsultantProfile } from '../../actions/profileAction';
+import TextFieldGroup from '../common/TextFieldGroup';
 
 class ConsultantProfile extends Component {
+    constructor() {
+        super();
+        this.state = {
+            companyName: '',
+            file: null,
+            phone: '',
+            address: '',
+            aboutMe: '',
+            serviceProvided: '',
+            introVideo: '',
+            images: [],
+            links: {}
+        };
+    }
+    componentDidMount() {
+        this.props.getConsultantProfileData()
+    }
+
+    checkIfProfileExist = (userData) => {
+        const { profileData } = this.props.profileData;
+        console.log(this.props.profileData)
+        Object.values(profileData).length === 1 ? this.props.editConsultantProfile(userData) : this.props.addConsultantProfile(userData)
+    }
+
+
+    onSubmit = async (e) => {
+        e.preventDefault();
+        const userData = {
+            companyName: this.state.companyName,
+            phone: this.state.phone,
+            serviceProvided: this.state.serviceProvided,
+            address: this.state.address,
+            aboutMe: this.state.aboutMe,
+            introVideo: this.state.introVideo
+        };
+        this.checkIfProfileExist(userData)
+    }
+
+    onChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { profileData } = nextProps.profileData;
+        const datas = Object.values(profileData);
+        if (datas[0]) {
+            this.setState({
+                companyName: datas[0].companyName,
+                phone: datas[0].phone,
+                industryInterest: datas[0].industryInterest,
+                address: datas[0].address,
+                aboutMe: datas[0].aboutMe
+            })
+        }
+    }
+
     render() {
         return (
             <div>
@@ -15,57 +74,74 @@ class ConsultantProfile extends Component {
                             <div className="col">
                                 <div className="dashboard-container">
                                     <div className="dashboard-content-wrapper">
-                                        <form action="#" className="dashboard-form">
+                                        <form onSubmit={this.onSubmit} className="dashboard-form">
                                             <div className="dashboard-section upload-profile-photo">
                                                 <div className="update-photo">
                                                     <img className="image" src="dashboard/images/company-logo.png" alt="" />
                                                 </div>
                                                 <div className="file-upload">
                                                     <input type="file" className="file-input" />Change Avatar
-                    </div>
+                                                </div>
                                             </div>
                                             <div className="dashboard-section basic-info-input">
                                                 <h4><i data-feather="user-check"></i>Basic Info</h4>
                                                 <div className="form-group row">
                                                     <label className="col-sm-3 col-form-label">Company Name</label>
                                                     <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="Company Name" />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group row">
-                                                    <label className="col-sm-3 col-form-label">Username</label>
-                                                    <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="@username" />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group row">
-                                                    <label className="col-sm-3 col-form-label">Email Address</label>
-                                                    <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="email@example.com" />
+                                                        <TextFieldGroup
+                                                            placeholder="Company Name"
+                                                            name="companyName"
+                                                            type="text"
+                                                            value={this.state.companyName}
+                                                            onChange={this.onChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="form-group row">
                                                     <label className="col-sm-3 col-form-label">Phone</label>
                                                     <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="+55 123 4563 4643" />
+                                                        <TextFieldGroup
+                                                            placeholder="Phone"
+                                                            name="phone"
+                                                            type="text"
+                                                            value={this.state.phone}
+                                                            onChange={this.onChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="form-group row">
                                                     <label className="col-sm-3 col-form-label">Address</label>
                                                     <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="Washington D.C" />
+                                                        <TextFieldGroup
+                                                            placeholder="Address"
+                                                            name="address"
+                                                            type="text"
+                                                            value={this.state.address}
+                                                            onChange={this.onChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="form-group row">
                                                     <label className="col-sm-3 col-form-label">Category</label>
                                                     <div className="col-sm-9">
-                                                        <input type="text" className="form-control" placeholder="UI & UX Designer" />
+                                                        <TextFieldGroup
+                                                            placeholder="Category"
+                                                            name="serviceProvided"
+                                                            type="text"
+                                                            value={this.state.serviceProvided}
+                                                            onChange={this.onChange}
+                                                        />
                                                     </div>
                                                 </div>
                                                 <div className="form-group row">
                                                     <label className="col-sm-3 col-form-label">About Us</label>
                                                     <div className="col-sm-9">
-                                                        <textarea className="form-control" placeholder=""></textarea>
+                                                        <textarea className="form-control"
+                                                            name="aboutMe"
+                                                            placeholder="Introduce Yourself"
+                                                            value={this.state.aboutMe}
+                                                            onChange={this.onChange}
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,7 +154,13 @@ class ConsultantProfile extends Component {
                                                             <div className="input-group-prepend">
                                                                 <div className="input-group-text">Link</div>
                                                             </div>
-                                                            <input type="text" className="form-control" placeholder="https://www.youtube.com/watch?v=ZRkdyjJ_489M" />
+                                                            <TextFieldGroup
+                                                                placeholder="URL Link"
+                                                                name="introVideo"
+                                                                type="text"
+                                                                value={this.state.introVideo}
+                                                                onChange={this.onChange}
+                                                            />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -152,9 +234,15 @@ class ConsultantProfile extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <ChangePassword />
+                                            <div className="form-group row">
+                                                <label className="col-sm-3 col-form-label"></label>
+                                                <div className="col-sm-9">
+                                                    <button className="button">Save Change</button>
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
+                                    <DashboardMenu />
                                 </div>
                             </div>
                         </div>
@@ -165,4 +253,16 @@ class ConsultantProfile extends Component {
     }
 }
 
-export default ConsultantProfile;
+const mapStateToProps = state => ({
+    errors: state.errors,
+    profileData: state.profile
+});
+
+export default connect(
+    mapStateToProps,
+    {
+        addConsultantProfile,
+        getConsultantProfileData,
+        editConsultantProfile
+    }
+)(ConsultantProfile);

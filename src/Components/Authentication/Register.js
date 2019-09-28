@@ -26,6 +26,13 @@ class Register extends Component {
         }
     }
 
+    componentDidMount() {
+        if (this.props.history.location.state) {
+            this.setState({ usertype: this.props.history.location.state.usertype })
+        }
+    }
+
+
     onSubmit = async (e) => {
         e.preventDefault();
         const userData = {
@@ -36,6 +43,7 @@ class Register extends Component {
             role: this.state.usertype,
             termsChecked: this.state.termsChecked
         };
+        console.log(userData)
         if (userData.password !== userData.password2) {
             console.log("Password Mismatched")
         } else {
@@ -62,6 +70,30 @@ class Register extends Component {
 
     render() {
         const { errors } = this.state;
+        const ifRoleSelectedAlready = () => {
+            if (this.props.history.location.state) {
+                if (this.props.history.location.state.usertype) {
+                    return (
+                        null
+                    )
+                }
+                return (
+                    null
+                )
+            }
+            else
+                return (
+                    <div className="account-type">
+                        <label for="idRegisterCan">
+                            <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
+                            <span>Seeker</span>
+                        </label>
+                        <label for="idRegisterEmp">
+                            <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
+                            <span>Consultant</span>
+                        </label>
+                    </div>)
+        }
         return (
             <div>
                 <AuthHeader
@@ -75,17 +107,7 @@ class Register extends Component {
                                     <div className="form-header">
                                         <h5><i data-feather="edit"></i>Register Account</h5>
                                     </div>
-                                    <div className="account-type">
-                                        <label for="idRegisterCan">
-                                            <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
-                                            <span>Seeker</span>
-                                        </label>
-                                        <label for="idRegisterEmp">
-                                            <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
-                                            <span>Consultant</span>
-                                        </label>
-                                    </div>
-                                    {errors.userRole}
+                                    {ifRoleSelectedAlready()}
                                     <form onSubmit={this.onSubmit}>
                                         <TextFieldGroup
                                             placeholder="Username*"

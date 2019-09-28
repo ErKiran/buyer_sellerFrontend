@@ -85,6 +85,7 @@ export const getConsultantProfileData = () => async dispatch => {
 
 export const addConsultantProfile = (userData, history) => async dispatch => {
     try {
+        console.log(userData)
         const res = await axios.post(`${BASE_URL}/profile/add_consultant`, userData);
         if (res.data) {
             history.push('/dashboard')

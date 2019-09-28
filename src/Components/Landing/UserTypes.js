@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const UserTypes = () => {
     return (
@@ -12,7 +13,7 @@ const UserTypes = () => {
                             </div>
                             <span>Are You</span>
                             <h3>Consultant?</h3>
-                            <a href="#" data-toggle="modal" data-target="#exampleModalLong2">Register Now <i className="fas fa-arrow-right"></i></a>
+                            <Link to={{ pathname: "/register", state: { usertype: 'Consultant' } }}>Register Now <i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                     <div className="col-lg-6">
@@ -22,12 +23,12 @@ const UserTypes = () => {
                             </div>
                             <span>Are You</span>
                             <h3>Seeker?</h3>
-                            <a href="#" data-toggle="modal" data-target="#exampleModalLong3">Register Now <i className="fas fa-arrow-right"></i></a>
+                            <Link to={{ pathname: '/register', state: { usertype: 'Seeker' } }}>Register Now <i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 
