@@ -85,7 +85,7 @@ class Login extends Component {
                                         <div className="more-option">
                                             <div className="mt-0 terms">
                                                 <input className="custom-radio" type="checkbox" id="radio-4" name="termsandcondition" />
-                                                <label for="radio-4">
+                                                <label htmlFor="radio-4">
                                                     <span className="dot"></span> Remember Me
                                               </label>
                                             </div>

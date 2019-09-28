@@ -43,12 +43,20 @@ class Register extends Component {
             role: this.state.usertype,
             termsChecked: this.state.termsChecked
         };
-        console.log(userData)
         if (userData.password !== userData.password2) {
-            console.log("Password Mismatched")
+            this.setState({
+                errors: {
+                    ...this.state.errors,
+                    mismatched: 'Password Mismatched'
+                }
+            })
         } else {
             this.props.registerUser(userData, this.props.history);
-            console.log(userData)
+            if (this.props.auth.register) {
+                if (this.props.auth.register.msg) {
+                    this.props.history.push('/login')
+                }
+            }
         }
     }
 
@@ -70,7 +78,7 @@ class Register extends Component {
 
     render() {
         const { errors } = this.state;
-        const ifRoleSelectedAlready = () => {
+        const ifRoleSelectedAlready = (err) => {
             if (this.props.history.location.state) {
                 if (this.props.history.location.state.usertype) {
                     return (
@@ -83,21 +91,26 @@ class Register extends Component {
             }
             else
                 return (
-                    <div className="account-type">
-                        <label for="idRegisterCan">
-                            <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
-                            <span>Seeker</span>
-                        </label>
-                        <label for="idRegisterEmp">
-                            <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
-                            <span>Consultant</span>
-                        </label>
-                    </div>)
+                    <>
+                        <div className="account-type">
+                            <label htmlFor="idRegisterCan">
+                                <input id="idRegisterCan" type="radio" name="register" onClick={this.clickme} />
+                                <span>Seeker</span>
+                            </label>
+                            <label htmlFor="idRegisterEmp">
+                                <input id="idRegisterEmp" type="radio" name="register" onClick={this.clickmee} />
+                                <span>Consultant</span>
+                            </label>
+                        </div>
+                        {err.userRole}
+                    </>
+                )
         }
         return (
             <div>
                 <AuthHeader
                     action="Login"
+                    link="/login"
                 />
                 <div className="padding-top-90 padding-bottom-90 access-page-bg">
                     <div className="container">
@@ -107,7 +120,7 @@ class Register extends Component {
                                     <div className="form-header">
                                         <h5><i data-feather="edit"></i>Register Account</h5>
                                     </div>
-                                    {ifRoleSelectedAlready()}
+                                    {ifRoleSelectedAlready(errors)}
                                     <form onSubmit={this.onSubmit}>
                                         <TextFieldGroup
                                             placeholder="Username*"
@@ -140,7 +153,7 @@ class Register extends Component {
                                             type="password"
                                             value={this.state.password2}
                                             onChange={this.onChange}
-                                            error={errors.password2}
+                                            error={errors.password2, errors.mismatched}
                                         />
                                         <div className="more-option terms">
                                             <div className="mt-0 terms">
@@ -150,11 +163,12 @@ class Register extends Component {
                                                     name="termsandcondition"
                                                     onClick={this.termClicked}
                                                 />
-                                                <label for="radio-4">
+                                                <label htmlFor="radio-4">
                                                     <span className="dot"></span> I accept the <Link to="terms_and_condition">terms & conditions</Link>
                                                 </label>
                                             </div>
                                         </div>
+
                                         <button type="submit" className="button primary-bg btn-block">Register</button>
                                     </form>
                                     <AuthFooter

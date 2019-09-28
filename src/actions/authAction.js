@@ -8,13 +8,18 @@ import {
     SET_CURRENT_USER,
     GET_ERRORS,
     PASSWORD_RESET_REQUEST,
-    GET_CURRENT_USER
+    GET_CURRENT_USER,
+    GET_REGISTER_USER
 } from './types';
 
 // Register User
 export const registerUser = (userData, history) => async dispatch => {
     try {
         const res = await axios.post(`${BASE_URL}/auth/register`, userData);
+        dispatch({
+            type: GET_REGISTER_USER,
+            payload: res.data
+        })
         if (res.data) {
             history.push('/login')
         }
