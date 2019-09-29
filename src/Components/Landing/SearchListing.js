@@ -42,7 +42,7 @@ class SearchListing extends Component {
                                             <option value="beauty">Beauty</option>
                                             <option value="furnitures">Furnitures</option>
                                         </select>
-                                        <button className="button"><i className="fas fa-search" />Search Job</button>
+                                        <button className="button"><i className="fas fa-search" />Search Consultant</button>
                                     </form>
                                 </div>
                             </div>

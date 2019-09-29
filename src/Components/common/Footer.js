@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
@@ -8,11 +9,11 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-lg-5 col-sm-6">
                             <div className="footer-widget widget-about">
-                                <img src="images/logo2.png" alt="Logo"/>
+                                <img src="images/logo2.png" alt="Logo" />
                                 <div className="widget-inner" style={{ paddingTop: '5px' }}>
-                                    <p className="description">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.</p>
+                                    <p className="description">We tend to bridge beautiful ideas to capable hands.</p>
                                     <span className="about-contact"><i data-feather="phone-forwarded"></i>+8 246-345-0698</span>
-                                    <span className="about-contact"><i data-feather="mail"></i>supportmail@gmail.com</span>
+                                    <span className="about-contact"><i data-feather="mail"></i>info@konsult101.com</span>
                                 </div>
                             </div>
                         </div>
@@ -31,12 +32,11 @@ const Footer = () => {
                         </div>
                         <div className="col-lg-2 col-sm-6">
                             <div className="footer-widget footer-shortcut-link">
-                                <h4>Job Seekers</h4>
+                                <h4>Buyers</h4>
                                 <div className="widget-inner">
                                     <ul>
-                                        <li><a href="#">Create Account</a></li>
-                                        <li><a href="#">Career Counseling</a></li>
-                                        <li><a href="#">My Oficiona</a></li>
+                                        <li><Link to="/">Buyers Consulting</Link></li>
+                                        <li><Link to="/">Konsult 101</Link></li>
                                         <li><a href="#">FAQ</a></li>
                                         <li><a href="#">Video Guides</a></li>
                                     </ul>
@@ -45,12 +45,11 @@ const Footer = () => {
                         </div>
                         <div className="col-lg-2 col-sm-6">
                             <div className="footer-widget footer-shortcut-link">
-                                <h4>Employers</h4>
+                                <h4>Consultant</h4>
                                 <div className="widget-inner">
                                     <ul>
-                                        <li><a href="#">Create Account</a></li>
                                         <li><a href="#">Products/Service</a></li>
-                                        <li><a href="#">Post a Job</a></li>
+                                        <li><a href="#">Post a Advertisement</a></li>
                                         <li><a href="#">FAQ</a></li>
                                     </ul>
                                 </div>

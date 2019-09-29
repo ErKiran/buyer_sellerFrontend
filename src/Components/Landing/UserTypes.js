@@ -22,8 +22,8 @@ const UserTypes = () => {
                                 <img src="images/register-box/2.png" alt="" />
                             </div>
                             <span>Are You</span>
-                            <h3>Seeker?</h3>
-                            <Link to={{ pathname: '/register', state: { usertype: 'Seeker' } }}>Register Now <i className="fas fa-arrow-right"></i></Link>
+                            <h3>Buyer?</h3>
+                            <Link to={{ pathname: '/register', state: { usertype: 'Buyer' } }}>Register Now <i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                 </div>

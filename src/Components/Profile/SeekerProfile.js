@@ -33,7 +33,7 @@ class SeekerProfile extends Component {
         const userData = {
             fullname: this.state.fullname,
             phone: this.state.phone,
-            industryInterest: this.state.industryInterest,
+            interest: this.state.industryInterest,
             address: this.state.address,
             aboutMe: this.state.aboutMe
         };
@@ -47,6 +47,7 @@ class SeekerProfile extends Component {
     componentWillReceiveProps(nextProps) {
         const { profileData } = nextProps.profileData;
         const datas = Object.values(profileData);
+        console.log(datas)
         if (datas[0]) {
             this.setState({
                 fullname: datas[0].fullname,
@@ -62,7 +63,7 @@ class SeekerProfile extends Component {
         return (
             <div>
                 <BreadCrumb
-                    title="Seeker Dashboard"
+                    title="Buyer Dashboard"
                 />
                 <div className="alice-bg section-padding-bottom">
                     <div className="container no-gliters">

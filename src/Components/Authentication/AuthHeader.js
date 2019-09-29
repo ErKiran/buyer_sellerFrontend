@@ -10,7 +10,6 @@ const AuthHeader = (props) => {
                         <div className="col">
                             <div className="header-top">
                                 <div className="logo-area">
-                                    <Link to="/"><img src="images/logo-2.png" alt="" /></Link>
                                 </div>
                                 <div className="top-nav">
                                     <Link to={props.link} className="account-page-link">{props.action}</Link>

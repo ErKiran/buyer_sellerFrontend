@@ -14,6 +14,8 @@ import ConsultantProfile from './Components/Profile/ConsultantProfile';
 import SeekerProfile from './Components/Profile/SeekerProfile';
 import Landing from './Components/Landing/Landing';
 import ChangePassword from './Components/Profile/ChangePassword';
+import PrivateRoute from './Components/Authentication/PrivateRoute';
+import Wrapper from './Components/common/Wrapper';
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -31,17 +33,19 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/change_password" component={ChangePassword} />
-            <Route exact path="/forget_password" component={ForgetPassword} />
-            <Route exact path="/forget_password_info" component={Info} />
-            <Route exact path="/terms_and_condition" component={TermsAndCondition} />
-            <Route exact path="/Consultantprofile" component={ConsultantProfile} />
-            <Route exact path="/Seekerprofile" component={SeekerProfile} />
-          </Switch>
+          <Wrapper>
+            <Switch>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/change_password" component={ChangePassword} />
+              <Route exact path="/forget_password" component={ForgetPassword} />
+              <Route exact path="/forget_password_info" component={Info} />
+              <Route exact path="/terms_and_condition" component={TermsAndCondition} />
+              <PrivateRoute exact path="/Consultantprofile" component={ConsultantProfile} />
+              <PrivateRoute exact path="/Buyerprofile" component={SeekerProfile} />
+            </Switch>
+          </Wrapper>
         </BrowserRouter>
       </div>
     );

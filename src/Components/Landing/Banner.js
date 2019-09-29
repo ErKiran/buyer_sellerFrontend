@@ -8,15 +8,15 @@ const Banner = () => {
                     <div className="col-12">
                         <div className="banner-content">
                             <h1>We Bridge your Ideas to Secure Hands</h1>
-                            <p>Create free account to find thousands Jobs, Employment & Career Opportunities around you!</p>
+                            <p>Create free account to find right solutions partner for your ideas and to seek ideas from related source. </p>
                             <div className="short-infos">
                                 <div className="info">
                                     <h4>5,862</h4>
-                                    <span>Jobs Posted</span>
+                                    <span>Ideas Seekers</span>
                                 </div>
                                 <div className="info">
                                     <h4>240</h4>
-                                    <span>Companies</span>
+                                    <span>Consultant Companies</span>
                                 </div>
                             </div>
                         </div>
